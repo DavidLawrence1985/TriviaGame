@@ -177,8 +177,8 @@ $(document).ready(function (){
 
     //=========gameplay
 
-    $(".answer").on("click", function() {//--wanted to use this for the check answer but could not 
-        guessed = true;//--------------------get .answer === match. 
+    $(".answer").on("click", function() {
+        guessed = true;
         if (guessed = true){
             myTime.hide();
             clearInterval(timerId);
@@ -187,8 +187,8 @@ $(document).ready(function (){
         }
     })
     
-    function checkAnswer() {//-------------------somehow I needed to try this out but I couldn't see a way to do so 
-        $("#answerOne").on("click", function() {
+    function checkAnswer() {
+        $("#answerOne, #answerTwo, #answerThree, #answerFour").on("click", function() {
             correct = 0;
             incorrect = 0;
             if($(this).attr("name") === match){
@@ -201,43 +201,10 @@ $(document).ready(function (){
             }    
         });
 
-        $("#answerTwo").on("click", function() {
-            if($(this).attr("name") === match){
-                showCorrect();
-                right++;
-            }
-            else{ 
-                showIncorrect();
-                wrong++;
-            }   
-        });
-
-        $("#answerThree").on("click", function() {
-            if($(this).attr("name") === match){
-                showCorrect();
-                right++;
-            }
-            else{   
-                showIncorrect();
-                wrong++;
-            }
-        });
-
-        $("#answerFour").on("click", function() {
-            if($(this).attr("name") === match){ 
-                showCorrect();
-                right++;
-            }
-            else{
-                showIncorrect();
-                wrong++;
-            }  
-        });
     }    
 });
     
 /*-----issues--
 As i noted with the display portion; I thought I should have used a for loop, but wasn't sure how to assign each to its own Id.
-Since I couldn't get the answers to work based on class I just ended up leaving it like it is since it was a working portion of the game.
 At the time I submitted the homework I didn't get the tally for correct and incorrect to work. Hoping to get it resolved before the deadline
 */
