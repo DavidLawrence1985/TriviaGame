@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Marmelad|Rock+Salt|Viga" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style.css">
     <title>trivia</title>
 </head>
@@ -12,19 +14,23 @@
     <h1 id="title">Beer Trivia</h1>
     <div class="button"><h2 id="start">START</h2></div> 
     <div id="game">
-        <div class="timer"><h3>Time Remaining : <span id="timer"></span></h3></div>
+        <div class="timer"><h3><span id="timer"></span></h3></div>
         <div class="quest"> <p id="questions"></p></div>
         <div class="answer"> <h4 id="answerOne" name=""></h4></div>
         <div class="answer"> <h4 id="answerTwo" name=""></h4></div>
         <div class="answer"> <h4 id="answerThree" name=""></h4></div>
         <div class="answer"> <h4 id="answerFour" name=""></h4></div>
-        <div><p id="note"></p></div>  
     </div> 
+    <div class="note"> 
+        <p id="note"></p>
+    </div>  
+     
     <div id="endPage"> 
-        <div class="button"><h2 id="restart">Play Again</h2></div>
-        <div><h2 id="correct"></h2></div>
-        <div><h2 id="incorrect"></h2></div>
-        <div><h2 id="unanswered"></h2></div>
+        <div class="button-two"><h2 id="restart">Play Again</h2></div>
+        <div><h2>Correct : <span id="correct"></span></h2></div>
+        <div><h2>Incorrect : <span id="incorrect"></span></h2></div>
+        <div><h2>Unasnwered : <span id="unanswered"></span></h2></div>
+        <div class="gif"><img src="https://media.giphy.com/media/mOOuUUIEEgq6A/giphy.gif"/></div>
     </div> 
 
 

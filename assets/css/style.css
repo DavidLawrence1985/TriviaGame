@@ -1,16 +1,62 @@
+body{
+    background: url("../images/beer.jpg");
+    background-size: 100%;
+}
+
 #title {
     text-align: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    font-family: 'Rock Salt', cursive;
 }
 .timer{
-    font-size: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: 'Rock Salt', cursive;
+}
+
+
+#game{
+    text-align: center;
+
 }
 
 #questions{
     font-size: 1.75rem;
+    font-family: 'Marmelad', sans-serif;
+
+
+}
+.button {
+    margin: auto;
+    padding: 2.5rem;
+    width:30%;
+    text-align: center;
+    background:url("../images/hops.jpg");
+    border:1px solid transparent;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor:pointer;
+    font-weight:lighter;
+    font-family: 'Rock Salt', cursive;
+}
+.button:hover{
 
 }
 
+.button-two {
+    margin: auto;
+    padding: 2.5rem;
+    width:30%;
+    text-align: center;
+    background:url("../images/hops.jpg");
+    border:1px solid transparent;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor:pointer;
+    font-weight:lighter;
+    font-family: 'Rock Salt', cursive;
+
+}
 .answer{
     font-size: 1.5rem;
 }
@@ -18,21 +64,38 @@
     font-size:1.25rem;
 }
 
-.button button{
-    height: 3rem;
-    width:auto; 
+#start{
+    font-size: 3rem;
+    text-align: center;
+    
 }
 
 .answer h4{
-    background-color: lightGreen;
+    background: #80b941;
     color: #fff;
     padding: 5px 15px;
-    box-shadow: 0px 5px green;
+    box-shadow: 0px 5px #689635;
     position: relative;
     width: fit-content;
+    cursor:pointer;
+    font-family: 'Marmelad', sans-serif;
 }
 
 .answer h4:active {
     box-shadow: none;
     top:5px;
 } 
+
+.note {
+    font-family: 'Viga', sans-serif;
+    background: #222222;
+    color: #E8B50C;
+    padding: 2px;
+    border: 1px transparent;
+    border-radius: 5px;
+    
+}
+
+/*font-family: 'Rock Salt', cursive;
+font-family: 'Marmelad', sans-serif;
+font-family: 'Viga', sans-serif;

@@ -4,21 +4,24 @@ $(document).ready(function (){
 
     $("#game").hide();
     $("#endPage").hide();
+    $(".note").hide();
 
     $("#start").on("click", function() {
-        $("#start").hide();
-        countdown();
+        $(".button").hide();
+        //countdown();
         displayQuestion();
         checkAnswer();         
     });
 
-    $("#restart").on("click", function(){
+    $(".button-two").on("click", function(){
         questionCount = 0;
         $("#endPage").hide();
-        countdown();
+        //countdown();
         displayQuestion();
         checkAnswer();
     })
+
+    //======questions 
 
     var game = [
         {
@@ -78,6 +81,7 @@ $(document).ready(function (){
 }           
     ];
     //======variables for game 
+
     var questionCount = 0;
     var correct = 0;
     var incorrect = 0;
@@ -90,11 +94,12 @@ $(document).ready(function (){
     var timerId = setInterval(countdown, 1000);
 
 
-        //=====display timer    
+    //=====timer functions  
+
     function countdown() {
         if (timer == 0) {
-           clearInterval(timerId);
-           showUnanswer();
+            clearInterval(timerId);
+            showUnanswer();
             next();
             myTime.hide();
             unanswered++;
@@ -103,7 +108,7 @@ $(document).ready(function (){
             timer--;
         }
     }
-
+    
     function reset(){
         $("#game").hide();
     }
@@ -113,22 +118,25 @@ $(document).ready(function (){
         setTimeout(displayQuestion, 5000);
         //timerId = setInterval(countdown, 1000);
     }
-    
+
+    //=========display functions
+
     function showUnanswer(){
-        $("#note").text("Out of time! The correct answer is" + " " +  match + " "+ ":" + " " + info).show();
+        $(".note").text("Out of time! The correct answer is" + " " +  match + " "+ ":" + " " + info).show();
     }
     function showCorrect(){
-        $("#note").text("That is Correct" + " " + ":" + " " + info).show();
+        $(".note").text("Cheers! that's correct" + " " + ":" + " " + info).show();
     }
 
     function showIncorrect(){
-        $("#note").text("Sorry, you would be Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
+        $(".note").text("Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
     }
     function displayQuestion(){
         myTime.show();
         timer = 15;
         myTime.text(timer);
-        $("#note").empty();
+        //timerId = setInterval(countdown, 1000);
+        $(".note").hide();
         $("#game").show();
         info = game[questionCount].note;
         match = game[questionCount].correctAnswer;
@@ -139,18 +147,18 @@ $(document).ready(function (){
         $("#answerFour").html(game[questionCount].answers[3]).attr("name",game[questionCount].answers[3]);
         questionCount++;
         if (questionCount > 8) {
-            $("#game").hide();
+            $("#game").empty();
             $("#endPage").show();
         }
         console.log(questionCount);
     };
 
+    //=========gameplay
+
     $(".answer").on("click", function() {
         guessed = true;
         if (guessed = true){
-           // timer = 15;
-           // myTime.text(timer);
-           myTime.hide();
+            myTime.hide();
             clearInterval(timerId);
             next();
             timerId = setInterval(countdown, 1000);
@@ -161,39 +169,32 @@ $(document).ready(function (){
     function checkAnswer() {
         $("#answerOne").on("click", function() {
             if($(this).attr("name") === match){
-                console.log("right");
                 correct +=1;
                 showCorrect();
-                console.log(correct)
             }
             else{
                 showIncorrect()
-                console.log("wrong");
                 incorrect += 1;    
             }    
         });
 
         $("#answerTwo").on("click", function() {
             if($(this).attr("name") === match){
-                console.log("right")
                 correct += 1;
                 showCorrect();
             }
             else{ 
                 showIncorrect();
-                console.log("wrong");
                 incorrect+=1;
             }   
         });
 
         $("#answerThree").on("click", function() {
             if($(this).attr("name") === match){
-                console.log("right")
                 correct+=1;
                 showCorrect();
             }
             else{   
-                console.log("wrong");
                 incorrect++;
                 showIncorrect();
             }
@@ -201,21 +202,22 @@ $(document).ready(function (){
 
         $("#answerFour").on("click", function() {
             if($(this).attr("name") === match){ 
-                console.log("right")
                 correct+=1;
                 showCorrect();
             }
             else{
-                console.log("wrong");
                 incorrect+=1;
                 showIncorrect();
             }  
         });
     }    
     
+    //=======display endpage
+
     $("#correct").text(correct);
     $("#incorrect").text(incorrect);
     $("#unanswered").text(unanswered);
+
 });
     
 
