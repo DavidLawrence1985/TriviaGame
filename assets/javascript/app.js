@@ -82,11 +82,13 @@ $(document).ready(function (){
         note: ""
 }           
     ];
+
     //======variables for game 
+
     var questionCount = 0;
-    var correct;
-    var incorrect;
-    var unanswered = 0;
+    var correct = "";
+    var incorrect = "";
+    var unanswered = "";
     var match;
     var guessed;
     var info;
@@ -94,11 +96,8 @@ $(document).ready(function (){
     var myTime = $("#timer");
     var timerId; 
 
-
     //=====timer functions  
 
-   
-    
     function reset(){
         $("#game").hide();
     }
@@ -117,9 +116,11 @@ $(document).ready(function (){
     //=========display functions
 
     function showUnanswer(){
+        unanswered = 0;
         $(".answer").hide();
         $("#unansweredGif").show();
         $(".note").text("Out of time! The correct answer is" + " " +  match + " "+ ":" + " " + info).show();
+        unanswered++;
     }
     function showCorrect(){
         $(".answer").hide();
@@ -177,7 +178,7 @@ $(document).ready(function (){
     //=========gameplay
 
     $(".answer").on("click", function() {//--wanted to use this for the check answer but could not 
-        guessed = true;//--------------------get .answer === match
+        guessed = true;//--------------------get .answer === match. 
         if (guessed = true){
             myTime.hide();
             clearInterval(timerId);
@@ -186,7 +187,7 @@ $(document).ready(function (){
         }
     })
     
-    function checkAnswer() {
+    function checkAnswer() {//-------------------somehow I needed to try this out but I couldn't see a way to do so 
         $("#answerOne").on("click", function() {
             correct = 0;
             incorrect = 0;
@@ -235,4 +236,8 @@ $(document).ready(function (){
     }    
 });
     
-   
+/*-----issues--
+As i noted with the display portion; I thought I should have used a for loop, but wasn't sure how to assign each to its own Id.
+Since I couldn't get the answers to work based on class I just ended up leaving it like it is since it was a working portion of the game.
+At the time I submitted the homework I didn't get the tally for correct and incorrect to work. Hoping to get it resolved before the deadline
+*/
