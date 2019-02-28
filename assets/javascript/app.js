@@ -8,15 +8,14 @@ $(document).ready(function (){
 
     $("#start").on("click", function() {
         $(".button").hide();
-        //countdown();
         displayQuestion();
         checkAnswer();         
     });
 
-    $(".button-two").on("click", function(){
+    $("#restart").on("click", function(){
         questionCount = 0;
         $("#endPage").hide();
-        //countdown();
+        $("#game").show();
         displayQuestion();
         checkAnswer();
     })
@@ -85,29 +84,18 @@ $(document).ready(function (){
     var questionCount = 0;
     var correct = 0;
     var incorrect = 0;
-    var unanswered =0;
+    var unanswered;
     var match;
     var guessed;
     var info;
     var timer = 15;
     var myTime = $("#timer");
-    var timerId = setInterval(countdown, 1000);
+    var timerId; 
 
 
     //=====timer functions  
 
-    function countdown() {
-        if (timer == 0) {
-            clearInterval(timerId);
-            showUnanswer();
-            next();
-            myTime.hide();
-            unanswered++;
-        } else {
-            myTime.text(timer);
-            timer--;
-        }
-    }
+   
     
     function reset(){
         $("#game").hide();
@@ -116,8 +104,13 @@ $(document).ready(function (){
     function next(){
         setTimeout(reset, 5000);
         setTimeout(displayQuestion, 5000);
-        //timerId = setInterval(countdown, 1000);
     }
+
+    //=======display endpage
+
+    $("#correct").text(correct);
+    $("#incorrect").text(incorrect);
+    $("#unanswered").text(unanswered);
 
     //=========display functions
 
@@ -132,31 +125,45 @@ $(document).ready(function (){
         $(".note").text("Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
     }
     function displayQuestion(){
-        myTime.show();
+        function countdown() {
+            //some type of issue seems like timer is delayed one second try to rearrange order
+            if (timer == 0) {
+                clearInterval(timerId);
+                showUnanswer();
+                next();
+                myTime.hide();
+            } else {
+                myTime.text(timer);
+                timer--;
+            }
+        }
         timer = 15;
-        myTime.text(timer);
-        //timerId = setInterval(countdown, 1000);
+        myTime.text(timer)
+        myTime.show();
+        timerId = setInterval(countdown, 1000);
         $(".note").hide();
         $("#game").show();
         info = game[questionCount].note;
         match = game[questionCount].correctAnswer;
         $("#questions").html(game[questionCount].question);
-        $("#answerOne").html(game[questionCount].answers[0]).attr("name",game[questionCount].answers[0]);
-        $("#answerTwo").html(game[questionCount].answers[1]).attr("name",game[questionCount].answers[1]);
-        $("#answerThree").html(game[questionCount].answers[2]).attr("name",game[questionCount].answers[2]);
-        $("#answerFour").html(game[questionCount].answers[3]).attr("name",game[questionCount].answers[3]);
+        $("#answerOne").html(game[questionCount].answers[0]).attr("name",game[questionCount].answers[0]);//--I think this should maybe be a for 
+        $("#answerTwo").html(game[questionCount].answers[1]).attr("name",game[questionCount].answers[1]);//--loop but struggled with the timer at first.
+        $("#answerThree").html(game[questionCount].answers[2]).attr("name",game[questionCount].answers[2]);//--so I restarted from scratch but kept
+        $("#answerFour").html(game[questionCount].answers[3]).attr("name",game[questionCount].answers[3]);//--this because it at least worked
         questionCount++;
         if (questionCount > 8) {
-            $("#game").empty();
+            $("#game").hide();
             $("#endPage").show();
+            $(".note").hide();
+            clearInterval(timerId);
         }
         console.log(questionCount);
     };
 
     //=========gameplay
 
-    $(".answer").on("click", function() {
-        guessed = true;
+    $(".answer").on("click", function() {//--wanted to use this for the check answer but could not 
+        guessed = true;//--------------------get .answer === match
         if (guessed = true){
             myTime.hide();
             clearInterval(timerId);
@@ -167,68 +174,58 @@ $(document).ready(function (){
     })
     
     function checkAnswer() {
+        
         $("#answerOne").on("click", function() {
             if($(this).attr("name") === match){
-                correct +=1;
                 showCorrect();
+                correct++;
             }
             else{
                 showIncorrect()
-                incorrect += 1;    
+                incorrect++;    
             }    
         });
 
         $("#answerTwo").on("click", function() {
             if($(this).attr("name") === match){
-                correct += 1;
                 showCorrect();
+                correct++;
             }
             else{ 
                 showIncorrect();
-                incorrect+=1;
+                incorrect++;
             }   
         });
 
         $("#answerThree").on("click", function() {
             if($(this).attr("name") === match){
-                correct+=1;
                 showCorrect();
+                correct++;
             }
             else{   
-                incorrect++;
                 showIncorrect();
+                incorrect++;
             }
         });
 
         $("#answerFour").on("click", function() {
             if($(this).attr("name") === match){ 
-                correct+=1;
                 showCorrect();
+                correct++;
             }
             else{
-                incorrect+=1;
                 showIncorrect();
+                incorrect++;
             }  
         });
     }    
     
-    //=======display endpage
+    /*=======display endpage
 
     $("#correct").text(correct);
     $("#incorrect").text(incorrect);
-    $("#unanswered").text(unanswered);
+    $("#unanswered").text(unanswered);*/
 
 });
     
-
-//start button and restart button that goes re runs game play 
-//create a countquestion var that ++ the question and index to show next question
-//setTimeout() to set to 10000 then clearTimeout to run next question function
-// set questions with their choices and which choice is the correct answer 
-// create time countdown 
-// if answer is chosen or time reaches 0 clearInterval 
-// if answer is correct add to correct show gif 
-// if incorrect show answer and wait 3 seconds 
-//show next question
-//once all questions asked show total of correct and incorrect respnoses
    
