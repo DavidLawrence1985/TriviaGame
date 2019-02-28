@@ -96,7 +96,6 @@ $(document).ready(function (){
            clearInterval(timerId);
            showUnanswer();
             next();
-            myTime.hide();
             unanswered++;
         } else {
             myTime.text(timer);
@@ -109,9 +108,9 @@ $(document).ready(function (){
     }
 
     function next(){
-        setTimeout(reset, 5000);
-        setTimeout(displayQuestion, 5000);
-        //timerId = setInterval(countdown, 1000);
+        setTimeout(reset, 3000);
+        setTimeout(displayQuestion, 3000);
+    
     }
     
     function showUnanswer(){
@@ -125,7 +124,6 @@ $(document).ready(function (){
         $("#note").text("Sorry, you would be Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
     }
     function displayQuestion(){
-        myTime.show();
         timer = 15;
         myTime.text(timer);
         $("#note").empty();
@@ -139,7 +137,7 @@ $(document).ready(function (){
         $("#answerFour").html(game[questionCount].answers[3]).attr("name",game[questionCount].answers[3]);
         questionCount++;
         if (questionCount > 8) {
-            $("#game").hide();
+            $("game").hide();
             $("#endPage").show();
         }
         console.log(questionCount);
@@ -149,11 +147,9 @@ $(document).ready(function (){
         guessed = true;
         if (guessed = true){
            // timer = 15;
-           // myTime.text(timer);
-           myTime.hide();
-            clearInterval(timerId);
+            myTime.text(timer);
+            clearInterval(timerId)
             next();
-            timerId = setInterval(countdown, 1000);
             guessed= false;
         }
     })

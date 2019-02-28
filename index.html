@@ -9,20 +9,23 @@
     <title>trivia</title>
 </head>
 <body>
-    <h1 id="title">Trivia</h1>
-    <button id="start">START</button>
+    <h1 id="title">Beer Trivia</h1>
+    <div class="button"><h2 id="start">START</h2></div> 
     <div id="game">
-        <div class="timer"><h3><span id="timer"></span></h3></div>
-        <div class="quest"> <h3 id="questions"></h3></div>
-        <div class="answer"> <h3 id="answerOne" name=""></h3></div>
-        <div class="answer"> <h3 id="answerTwo" name=""></h3></div>
-        <div class="answer"> <h3 id="answerThree" name=""></h3></div>
-        <div class="answer"> <h3 id="answerFour" name=""></h3></div>
+        <div class="timer"><h3>Time Remaining : <span id="timer"></span></h3></div>
+        <div class="quest"> <p id="questions"></p></div>
+        <div class="answer"> <h4 id="answerOne" name=""></h4></div>
+        <div class="answer"> <h4 id="answerTwo" name=""></h4></div>
+        <div class="answer"> <h4 id="answerThree" name=""></h4></div>
+        <div class="answer"> <h4 id="answerFour" name=""></h4></div>
+        <div><p id="note"></p></div>  
     </div> 
-    <div id="note"><h3></h3></div>   
-    <button id="restart">Play Again</button>
-    <div id="right"></div>
-    <div id="wrong"></div>
+    <div id="endPage"> 
+        <div class="button"><h2 id="restart">Play Again</h2></div>
+        <div><h2 id="correct"></h2></div>
+        <div><h2 id="incorrect"></h2></div>
+        <div><h2 id="unanswered"></h2></div>
+    </div> 
 
 
     <script src="assets/javascript/app.js"></script>
