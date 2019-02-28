@@ -95,6 +95,17 @@ body{
     border-radius: 5px;
     
 }
+#rightGif{
+    padding: 10px;
+}
+
+#wrongGif{
+    padding: 10px;
+}
+
+.answerGif{
+    text-align: center;
+}
 
 /*font-family: 'Rock Salt', cursive;
 font-family: 'Marmelad', sans-serif;

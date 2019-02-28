@@ -5,6 +5,9 @@ $(document).ready(function (){
     $("#game").hide();
     $("#endPage").hide();
     $(".note").hide();
+    $("#rightGif").hide();
+    $("#wrongGif").hide();
+    $("#unansweredGif").hide();
 
     $("#start").on("click", function() {
         $(".button").hide();
@@ -80,11 +83,10 @@ $(document).ready(function (){
 }           
     ];
     //======variables for game 
-
     var questionCount = 0;
-    var correct = 0;
-    var incorrect = 0;
-    var unanswered;
+    var correct;
+    var incorrect;
+    var unanswered = 0;
     var match;
     var guessed;
     var info;
@@ -115,17 +117,25 @@ $(document).ready(function (){
     //=========display functions
 
     function showUnanswer(){
+        $(".answer").hide();
+        $("#unansweredGif").show();
         $(".note").text("Out of time! The correct answer is" + " " +  match + " "+ ":" + " " + info).show();
     }
     function showCorrect(){
+        $(".answer").hide();
+        $("#rightGif").show();
         $(".note").text("Cheers! that's correct" + " " + ":" + " " + info).show();
     }
 
     function showIncorrect(){
+        $(".answer").hide();
+        $("#wrongGif").show();
         $(".note").text("Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
     }
     function displayQuestion(){
+        
         function countdown() {
+            //timerId = setInterval(countdown, 1000);
             //some type of issue seems like timer is delayed one second try to rearrange order
             if (timer == 0) {
                 clearInterval(timerId);
@@ -141,6 +151,10 @@ $(document).ready(function (){
         myTime.text(timer)
         myTime.show();
         timerId = setInterval(countdown, 1000);
+        $(".answer").show();
+        $("#unansweredGif").hide();
+        $("#rightGif").hide();
+        $("#wrongGif").hide();
         $(".note").hide();
         $("#game").show();
         info = game[questionCount].note;
@@ -168,14 +182,14 @@ $(document).ready(function (){
             myTime.hide();
             clearInterval(timerId);
             next();
-            timerId = setInterval(countdown, 1000);
-            guessed= false;
+            timerId;
         }
     })
     
     function checkAnswer() {
-        
         $("#answerOne").on("click", function() {
+            correct = 0;
+            incorrect = 0;
             if($(this).attr("name") === match){
                 showCorrect();
                 correct++;
@@ -189,43 +203,36 @@ $(document).ready(function (){
         $("#answerTwo").on("click", function() {
             if($(this).attr("name") === match){
                 showCorrect();
-                correct++;
+                right++;
             }
             else{ 
                 showIncorrect();
-                incorrect++;
+                wrong++;
             }   
         });
 
         $("#answerThree").on("click", function() {
             if($(this).attr("name") === match){
                 showCorrect();
-                correct++;
+                right++;
             }
             else{   
                 showIncorrect();
-                incorrect++;
+                wrong++;
             }
         });
 
         $("#answerFour").on("click", function() {
             if($(this).attr("name") === match){ 
                 showCorrect();
-                correct++;
+                right++;
             }
             else{
                 showIncorrect();
-                incorrect++;
+                wrong++;
             }  
         });
     }    
-    
-    /*=======display endpage
-
-    $("#correct").text(correct);
-    $("#incorrect").text(incorrect);
-    $("#unanswered").text(unanswered);*/
-
 });
     
    
