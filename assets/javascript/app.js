@@ -84,9 +84,6 @@ $(document).ready(function (){
     //======variables for game 
 
     var questionCount = 0;
-    var correct;
-    var incorrect;
-    var unanswered;
     var match;
     var guessed;
     var info;
@@ -101,43 +98,54 @@ $(document).ready(function (){
     }
 
     function next(){
-        setTimeout(reset, 5000);
-        setTimeout(displayQuestion, 5000);
+        setTimeout(reset, 7000);
+        setTimeout(displayQuestion, 7000);
     }
 
     //=========display functions
 
     function showUnanswer(){
+        var unanswered = 0;
         $(".answer").hide();
         $("#unansweredGif").show();
         $(".note").text("Out of time! The correct answer is" + " " +  match + " "+ ":" + " " + info).show();
+        unanswered+=1;
+        $("#unanswered").text(unanswered); 
     }
     function showCorrect(){
+        var correct = 0;
         $(".answer").hide();
         $("#rightGif").show();
         $(".note").text("Cheers! that's correct" + " " + ":" + " " + info).show();
+        correct+=1;
+        $("#correct").text(correct);
+
     }
 
     function showIncorrect(){
+        var incorrect = 0;
         $(".answer").hide();
         $("#wrongGif").show();
         $(".note").text("Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
+        incorrect+=1;
+        $("#incorrect").text(incorrect);
     }
     function displayQuestion(){
         function countdown() {
-           unanswered = 0;
+           //var unanswered = 0;
             if (timer == 0) {
                 clearInterval(timerId);
                 showUnanswer();
                 next();
                 myTime.hide();
-                unanswered+=1;
+                //unanswered+=1;
+                //$("#unanswered").text(unanswered); 
             } else {
                 myTime.text(timer);
                 timer--;
             }
         }
-        $("#unanswered").text(unanswered);
+        
         timer = 15;
         myTime.text(timer)
         myTime.show();
@@ -178,22 +186,16 @@ $(document).ready(function (){
     })
        
     $("#answerOne, #answerTwo, #answerThree, #answerFour").on("click", function() {
-        correct = 0;
-        incorrect = 0;
         if($(this).attr("name") === match){
-            showCorrect();
-            correct+=1;
-                
+            showCorrect();       
         }
         else{
-            showIncorrect()
-            incorrect+=1;  
-                  
-        }    
+            showIncorrect()       
+        } 
+        
     });
 
-    $("#correct").text(correct);
-    $("#incorrect").text(incorrect);
+    
                     
 
       
