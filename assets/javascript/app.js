@@ -11,8 +11,7 @@ $(document).ready(function (){
 
     $("#start").on("click", function() {
         $(".button").hide();
-        displayQuestion();
-        checkAnswer();         
+        displayQuestion();         
     });
 
     $("#restart").on("click", function(){
@@ -20,7 +19,6 @@ $(document).ready(function (){
         $("#endPage").hide();
         $("#game").show();
         displayQuestion();
-        checkAnswer();
     })
 
     //======questions 
@@ -86,9 +84,9 @@ $(document).ready(function (){
     //======variables for game 
 
     var questionCount = 0;
-    var correct = "";
-    var incorrect = "";
-    var unanswered = "";
+    var correct;
+    var incorrect;
+    var unanswered;
     var match;
     var guessed;
     var info;
@@ -107,20 +105,12 @@ $(document).ready(function (){
         setTimeout(displayQuestion, 5000);
     }
 
-    //=======display endpage
-
-    $("#correct").text(correct);
-    $("#incorrect").text(incorrect);
-    $("#unanswered").text(unanswered);
-
     //=========display functions
 
     function showUnanswer(){
-        unanswered = 0;
         $(".answer").hide();
         $("#unansweredGif").show();
         $(".note").text("Out of time! The correct answer is" + " " +  match + " "+ ":" + " " + info).show();
-        unanswered++;
     }
     function showCorrect(){
         $(".answer").hide();
@@ -134,20 +124,20 @@ $(document).ready(function (){
         $(".note").text("Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
     }
     function displayQuestion(){
-        
         function countdown() {
-            //timerId = setInterval(countdown, 1000);
-            //some type of issue seems like timer is delayed one second try to rearrange order
+           unanswered = 0;
             if (timer == 0) {
                 clearInterval(timerId);
                 showUnanswer();
                 next();
                 myTime.hide();
+                unanswered+=1;
             } else {
                 myTime.text(timer);
                 timer--;
             }
         }
+        $("#unanswered").text(unanswered);
         timer = 15;
         myTime.text(timer)
         myTime.show();
@@ -186,25 +176,29 @@ $(document).ready(function (){
             timerId;
         }
     })
-    
-    function checkAnswer() {
-        $("#answerOne, #answerTwo, #answerThree, #answerFour").on("click", function() {
-            correct = 0;
-            incorrect = 0;
-            if($(this).attr("name") === match){
-                showCorrect();
-                correct++;
-            }
-            else{
-                showIncorrect()
-                incorrect++;    
-            }    
-        });
+       
+    $("#answerOne, #answerTwo, #answerThree, #answerFour").on("click", function() {
+        correct = 0;
+        incorrect = 0;
+        if($(this).attr("name") === match){
+            showCorrect();
+            correct+=1;
+                
+        }
+        else{
+            showIncorrect()
+            incorrect+=1;  
+                  
+        }    
+    });
 
-    }    
+    $("#correct").text(correct);
+    $("#incorrect").text(incorrect);
+                    
+
+      
 });
     
 /*-----issues--
-As i noted with the display portion; I thought I should have used a for loop, but wasn't sure how to assign each to its own Id.
 At the time I submitted the homework I didn't get the tally for correct and incorrect to work. Hoping to get it resolved before the deadline
 */
