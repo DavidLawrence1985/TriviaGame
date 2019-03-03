@@ -84,8 +84,10 @@ $(document).ready(function (){
     //======variables for game 
 
     var questionCount = 0;
+    var correct = 0;
+    var incorrect = 0;
+    var unanswered = 0;
     var match;
-    var guessed;
     var info;
     var timer = 15;
     var myTime = $("#timer");
@@ -105,7 +107,6 @@ $(document).ready(function (){
     //=========display functions
 
     function showUnanswer(){
-        var unanswered = 0;
         $(".answer").hide();
         $("#unansweredGif").show();
         $(".note").text("Out of time! The correct answer is" + " " +  match + " "+ ":" + " " + info).show();
@@ -113,7 +114,6 @@ $(document).ready(function (){
         $("#unanswered").text(unanswered); 
     }
     function showCorrect(){
-        var correct = 0;
         $(".answer").hide();
         $("#rightGif").show();
         $(".note").text("Cheers! that's correct" + " " + ":" + " " + info).show();
@@ -123,7 +123,6 @@ $(document).ready(function (){
     }
 
     function showIncorrect(){
-        var incorrect = 0;
         $(".answer").hide();
         $("#wrongGif").show();
         $(".note").text("Wrong, The correct answer is " + " " +  match + " "+" : " + " " + info).show();
@@ -132,14 +131,12 @@ $(document).ready(function (){
     }
     function displayQuestion(){
         function countdown() {
-           //var unanswered = 0;
             if (timer == 0) {
                 clearInterval(timerId);
                 showUnanswer();
                 next();
                 myTime.hide();
-                //unanswered+=1;
-                //$("#unanswered").text(unanswered); 
+ 
             } else {
                 myTime.text(timer);
                 timer--;

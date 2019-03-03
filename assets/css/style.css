@@ -104,6 +104,11 @@ body{
     text-align: center;
 }
 
+.responses {
+    font-size: 1.75rem;
+    font-family: 'Marmelad', sans-serif;
+}
+
 /*font-family: 'Rock Salt', cursive;
 font-family: 'Marmelad', sans-serif;
 font-family: 'Viga', sans-serif;
